@@ -1,0 +1,11 @@
+.title {
+  margin: 0;
+  font-size: 72px;
+  line-height: 1;
+  color: $brown;
+  font-weight: 400;
+
+  @include max(xxl) {
+    font-size: vw(72);
+  }
+}

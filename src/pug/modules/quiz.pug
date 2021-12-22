@@ -1,0 +1,11 @@
+each item,index in QUESTIONS
+  - const addClass = ((index+1) % 2 === 0 ? 'quiz--reverse quiz--q' + (index + 1) : 'quiz--q' + (index + 1))
+  section.quiz(class= addClass)
+    .quiz__container.container
+      .quiz__main.question
+        h2.question__title.title
+          span.question__title-num= (index + 1)
+          span.question__title-text= item.q
+        +custom-radio('answer', item.answers, 20, 'question__answers')
+      .quiz__aside
+        img(src="images/q" + (index + 1) + ".svg", alt="")

@@ -1,0 +1,28 @@
+each item in RESULTS
+  section.result(class="result--" + item.type)
+    .result__container.container
+      .result__main
+        h2.result__title.title= item.title
+        .result__text!= item.text
+        .result__action
+          button.result__restart(type="button") Пройти еще раз
+          button.result__more(type="button") Еще результат
+
+          .result__social 
+            .result__social-hint Поделиться с друзьями
+            ul.result__social-list.social 
+              li.social__item 
+                a.social__link.social__link--tw(href="#")
+                  +icon('tw')(width="21", height="16")
+              li.social__item 
+                a.social__link.social__link--ok(href="#")
+                  +icon('ok')(width="15", height="23")
+              li.social__item 
+                a.social__link.social__link--fb(href="#")
+                  +icon('fb')(width="13", height="21")
+              li.social__item 
+                a.social__link.social__link--b(href="#")
+                  +icon('b')(width="15", height="15")
+      
+      .result__aside 
+        img(src="images/result-" + item.type + ".svg", alt="")

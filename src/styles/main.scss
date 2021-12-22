@@ -1,0 +1,27 @@
+/* base */
+@import "base/var";
+@import "base/reset";
+@import "base/fonts";
+
+/* mixin */
+@import "base/mixin";
+
+/*libs*/
+
+/* main */
+@import "partials/main";
+
+/* blocks */
+@import "blocks/title";
+@import "blocks/social";
+@import "blocks/custom-radio";
+@import "blocks/question";
+@import "blocks/intro";
+@import "blocks/quiz";
+@import "blocks/result";
+
+/* components */
+@import "partials/header";
+@import "partials/footer";
+
+/*blocks*/

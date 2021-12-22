@@ -1,0 +1,119 @@
+.custom-radio {
+  $self: &;
+
+  &__item {
+    display: block;
+
+    & + & {
+      margin-top: 40px;
+
+      @include max(xxl) {
+        margin-top: vw(40);
+      }
+    }
+
+    @include hover {
+      #{$self}__text {
+        &::before {
+          border-color: $orange--light;
+        }
+      }
+    }
+
+    input:focus ~ #{$self}__text {
+      &::before {
+        border-color: $orange--light;
+      }
+    }
+
+    input:checked + #{$self}__text {
+      pointer-events: none;
+
+      &::before {
+        //border-color: $orange--light;
+        //background-color: $green-84;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: -8px;
+        left: 11px;
+        width: 78px;
+        height: 66px;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg  viewBox='0 0 78 66' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M65.275 0 25.532 39.744l-12.89-12.89L0 39.496l12.89 12.89L25.614 65.11l12.642-12.642L78 12.725 65.275 0Z' fill='%23F90'/%3e%3c/svg%3e");
+
+        @include max(xxl) {
+          top: vw(-8);
+          left: vw(11);
+          width: vw(78);
+          height: vw(66);
+        }
+      }
+    }
+  }
+
+  &__text {
+    position: relative;
+    display: flex;
+    vertical-align: top;
+    //padding-left: 117px;
+
+    font-size: 35px;
+    line-height: 1.2;
+    color: $dark;
+
+    cursor: pointer;
+
+    @include max(xxl) {
+      font-size: vw(35);
+    }
+
+    /*@include max(sm) {
+      padding-left: vw(50, 375);
+      font-size: vw(20, 375);
+      line-height: vw(42, 375);
+    }*/
+
+    &::before {
+      content: "";
+      /*position: absolute;
+      top: 0;
+      left: 0;*/
+      display: block;
+      width: 75px;
+      height: 75px;
+      margin-right: 42px;
+      border-radius: 50%;
+      border: solid 4px $orange;
+      background-color: $white;
+      transition: border-color $transition;
+
+      flex-shrink: 0;
+
+      @include max(xxl) {
+        width: vw(75);
+        height: vw(75);
+        margin-right: vw(42);
+        border-width: vw(4);
+      }
+
+      /*@include max(xl) {
+        top: vw(9, 1440);
+        width: vw(25, 1440);
+        height: vw(25, 1440);
+      }
+
+      @include max(sm) {
+        top: vw(9, 375);
+        width: vw(25, 375);
+        height: vw(25, 375);
+      }*/
+    }
+
+    span {
+      align-self: center;
+    }
+  }
+}

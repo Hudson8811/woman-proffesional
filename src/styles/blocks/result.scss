@@ -1,0 +1,242 @@
+.result {
+  $self: &;
+  padding: 70px 0;
+
+  @include max(xxl) {
+    padding: vw(70) 0;
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  &--pm {
+    #{$self}__main {
+      width: 1066px;
+      padding-left: 116px;
+
+      @include max(xxl) {
+        width: vw(1066);
+        padding-left: vw(116);
+      }
+    }
+
+    #{$self}__aside {
+      width: 692px;
+      margin-right: -120px;
+
+      @include max(xxl) {
+        width: vw(692);
+        margin-right: vw(-120);
+      }
+
+      img {
+        top: 45px;
+
+        @include max(xxl) {
+          top: vw(45);
+        }
+      }
+    }
+
+    #{$self}__title {
+      max-width: 750px;
+
+      @include max(xxl) {
+        max-width: vw(750);
+      }
+    }
+  }
+
+  &--ik {
+    #{$self}__main {
+      width: 960px;
+
+      @include max(xxl) {
+        width: vw(960);
+      }
+    }
+
+    #{$self}__aside {
+      width: 693px;
+      margin-right: 20px;
+      margin-left: -120px;
+      order: -1;
+
+      @include max(xxl) {
+        width: vw(693);
+        margin-right: vw(20);
+        margin-left: vw(-120);
+      }
+
+      img {
+        top: 93px;
+
+        @include max(xxl) {
+          top: vw(93);
+        }
+      }
+    }
+  }
+
+  &--pr {
+    #{$self}__main {
+      width: 1066px;
+      padding-left: 116px;
+
+      @include max(xxl) {
+        width: vw(1066);
+        padding-left: vw(116);
+      }
+    }
+
+    #{$self}__aside {
+      width: 574px;
+      margin-right: -120px;
+
+      @include max(xxl) {
+        width: vw(574);
+        margin-right: vw(-120);
+      }
+
+      img {
+        top: -94px;
+        right: -61px;
+
+        @include max(xxl) {
+          top: vw(-94);
+          right: vw(-61);
+        }
+      }
+    }
+  }
+
+  &--km {
+    #{$self}__main {
+      width: 840px;
+
+      @include max(xxl) {
+        width: vw(840);
+      }
+    }
+    #{$self}__aside {
+      width: 692px;
+      order: -1;
+
+      @include max(xxl) {
+        width: vw(692);
+      }
+
+      img {
+        left: -120px;
+
+        @include max(xxl) {
+          left: vw(-120);
+        }
+      }
+    }
+  }
+
+  &__main {
+    width: 50%;
+  }
+
+  &__title {
+    margin-bottom: 55px;
+    font-weight: 700;
+
+    @include max(xxl) {
+      margin-bottom: vw(55);
+    }
+  }
+
+  &__text {
+    font-size: 26px;
+    line-height: 1.23;
+
+    @include max(xxl) {
+      font-size: vw(26);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    p + p {
+      margin-top: 1.2em;
+    }
+  }
+
+  &__aside {
+    width: 50%;
+    flex-shrink: 0;
+
+    img {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__action {
+    display: flex;
+    margin-top: 40px;
+
+    @include max(xxl) {
+      margin-top: vw(40);
+    }
+  }
+
+  &__restart,
+  &__more {
+    padding: 16px 32px;
+    font-size: 20px;
+    color: $white;
+    border: none;
+    background-color: $orange;
+    align-self: flex-end;
+    appearance: none;
+    cursor: pointer;
+
+    transition: background-color $transition;
+
+    @include max(xxl) {
+      padding: vw(16) vw(32);
+      font-size: vw(20);
+    }
+
+    @include hover {
+      background-color: $orange--light;
+    }
+  }
+
+  &__restart {
+    margin-right: 16px;
+
+    @include max(xxl) {
+      margin-right: vw(16);
+    }
+  }
+
+  &__more {
+  }
+
+  &__social {
+    margin-left: auto;
+
+    &-hint {
+      margin-bottom: 16px;
+      font-size: 18px;
+      line-height: 1;
+
+      @include max(xxl) {
+        margin-bottom: vw(16);
+        font-size: vw(18);
+      }
+    }
+
+    &-list {
+    }
+  }
+}

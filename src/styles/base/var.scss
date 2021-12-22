@@ -1,0 +1,26 @@
+/* media */
+$media-list: (
+  "xxs": 375,
+  "xs": 560,
+  "sm": 767,
+  "md": 1079,
+  "lg": 1279,
+  "xl": 1599,
+  "xxl": 1919,
+);
+
+/* шрифты */
+$mainFont: "Roboto", "Arial", sans-serif;
+$secondFont: "Saira Condensed", "Arial", sans-serif;
+
+/* цвета */
+$white: #ffffff;
+$dark: #5b5b5b;
+$brown: #714400;
+$smoky: #f6f6f6;
+$orange: #ff9900;
+$orange--light: #fcb852;
+
+$textMainColor: $dark;
+
+$transition: 0.3s ease;

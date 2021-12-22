@@ -1,0 +1,30 @@
+.question {
+  &__title {
+    display: flex;
+    max-width: 985px;
+
+    @include max(xxl) {
+      max-width: vw(985);
+    }
+
+    &-num {
+      margin-right: 24px;
+      font-family: $secondFont;
+      font-size: 288px;
+      line-height: 1;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: $brown;
+      align-self: center;
+
+      @include max(xxl) {
+        margin-right: vw(24);
+        font-size: vw(288);
+      }
+    }
+
+    &-text {
+      align-self: center;
+    }
+  }
+}
