@@ -17,6 +17,11 @@ body {
     max-width: vw(1670);
     padding: 0 vw(15);
   }
+
+  @include max(sm) {
+    max-width: none;
+    padding: 0 vw(15, 320);
+  }
 }
 
 .visually-hidden {

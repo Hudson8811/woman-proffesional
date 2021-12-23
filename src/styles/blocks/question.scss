@@ -7,6 +7,12 @@
       max-width: vw(985);
     }
 
+    @include max(sm) {
+      //display: block;
+      max-width: none;
+      margin-bottom: vw(24, 320);
+    }
+
     &-num {
       margin-right: 24px;
       font-family: $secondFont;
@@ -20,11 +26,25 @@
       @include max(xxl) {
         margin-right: vw(24);
         font-size: vw(288);
+
+        -webkit-text-stroke-width: vw(3);
+      }
+
+      @include max(sm) {
+        margin-right: vw(12, 320);
+        font-size: vw(90, 320);
+
+        -webkit-text-stroke-width: vw(2, 320);
+        align-self: flex-start;
       }
     }
 
     &-text {
       align-self: center;
+
+      @include max(sm) {
+        font-size: vw(26, 320);
+      }
     }
   }
 }

@@ -9,6 +9,10 @@
     padding: vw(60) 0;
   }
 
+  @include max(sm) {
+    padding: vw(32, 320) 0;
+  }
+
   &--reverse {
     #{$self}__aside {
       order: -1;
@@ -18,6 +22,10 @@
   .container {
     display: flex;
     align-self: center;
+
+    @include max(sm) {
+      flex-direction: column;
+    }
   }
 
   &--q1 {
@@ -26,6 +34,10 @@
 
       @include max(xxl) {
         width: vw(900);
+      }
+
+      @include max(sm) {
+        width: 100%;
       }
     }
 
@@ -36,6 +48,10 @@
         width: vw(712);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       img {
         right: -29px;
         top: 21px;
@@ -43,6 +59,10 @@
         @include max(xxl) {
           right: vw(-29);
           top: vw(21);
+        }
+        @include max(sm) {
+          right: 0;
+          top: 0;
         }
       }
     }
@@ -55,6 +75,10 @@
       @include max(xxl) {
         width: vw(900);
       }
+
+      @include max(sm) {
+        width: 100%;
+      }
     }
 
     #{$self}__aside {
@@ -64,6 +88,11 @@
       @include max(xxl) {
         width: vw(703);
         margin-right: vw(102);
+      }
+
+      @include max(sm) {
+        width: 100%;
+        margin-right: 0;
       }
     }
   }
@@ -76,6 +105,10 @@
       @include max(xxl) {
         width: vw(960);
       }
+
+      @include max(sm) {
+        width: 100%;
+      }
     }
 
     #{$self}__aside {
@@ -85,6 +118,10 @@
         width: vw(603);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       img {
         left: -42px;
         top: 25px;
@@ -92,6 +129,11 @@
         @include max(xxl) {
           left: vw(-42);
           top: vw(25);
+        }
+
+        @include max(sm) {
+          left: 0;
+          top: 0;
         }
       }
     }
@@ -104,6 +146,10 @@
       @include max(xxl) {
         width: vw(920);
       }
+
+      @include max(sm) {
+        width: 100%;
+      }
     }
 
     #{$self}__aside {
@@ -113,6 +159,10 @@
         width: vw(723);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       img {
         left: -118px;
         top: 12px;
@@ -120,6 +170,11 @@
         @include max(xxl) {
           left: vw(-118);
           top: vw(12);
+        }
+
+        @include max(sm) {
+          left: 0;
+          top: 0;
         }
       }
     }
@@ -133,11 +188,19 @@
         width: vw(945);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       .question__title {
         font-size: 42px;
 
         @include max(xxl) {
           font-size: vw(42);
+        }
+
+        @include max(sm) {
+          font-size: vw(26, 320);
         }
       }
     }
@@ -152,6 +215,11 @@
         margin-right: vw(-100);
       }
 
+      @include max(sm) {
+        width: 100%;
+        margin-right: 0;
+      }
+
       img {
         right: -15px;
         top: 39px;
@@ -159,6 +227,11 @@
         @include max(xxl) {
           right: vw(-15);
           top: vw(39);
+        }
+
+        @include max(sm) {
+          right: 0;
+          top: 0;
         }
       }
     }
@@ -172,6 +245,10 @@
         width: vw(1000);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       .question__title {
         max-width: 910px;
         font-size: 48px;
@@ -179,6 +256,11 @@
         @include max(xxl) {
           max-width: vw(910);
           font-size: vw(48);
+        }
+
+        @include max(sm) {
+          max-width: none;
+          font-size: vw(26, 320);
         }
       }
     }
@@ -194,11 +276,21 @@
         margin-right: vw(32);
       }
 
+      @include max(sm) {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
       img {
         top: 77px;
 
         @include max(xxl) {
           top: vw(77);
+        }
+
+        @include max(sm) {
+          top: 0;
         }
       }
     }
@@ -212,6 +304,10 @@
         width: vw(920);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       .question__title {
         width: 1040px;
         max-width: none;
@@ -220,6 +316,11 @@
         @include max(xxl) {
           width: vw(1040);
           font-size: vw(64);
+        }
+
+        @include max(sm) {
+          width: 100%;
+          font-size: vw(26, 320);
         }
       }
     }
@@ -232,6 +333,10 @@
         width: vw(727);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       img {
         right: -110px;
         top: -8px;
@@ -239,6 +344,11 @@
         @include max(xxl) {
           right: vw(-110);
           top: vw(-8);
+        }
+
+        @include max(sm) {
+          right: 0;
+          top: 0;
         }
       }
     }
@@ -254,6 +364,11 @@
         margin-right: vw(-65);
       }
 
+      @include max(sm) {
+        width: 100%;
+        margin-right: 0;
+      }
+
       .question__title {
         max-width: 860px;
         font-size: 48px;
@@ -261,6 +376,11 @@
         @include max(xxl) {
           max-width: vw(860);
           font-size: vw(48);
+        }
+
+        @include max(sm) {
+          max-width: none;
+          font-size: vw(26, 320);
         }
       }
     }
@@ -274,6 +394,11 @@
         margin-right: vw(88);
       }
 
+      @include max(sm) {
+        width: 100%;
+        margin-right: 0;
+      }
+
       img {
         left: -54px;
         top: 44px;
@@ -281,6 +406,11 @@
         @include max(xxl) {
           left: vw(-54);
           top: vw(44);
+        }
+
+        @include max(sm) {
+          left: 0;
+          top: 0;
         }
       }
     }
@@ -296,6 +426,11 @@
         margin-right: vw(-65);
       }
 
+      @include max(sm) {
+        width: 100%;
+        margin-right: 0;
+      }
+
       .question__title {
         width: 1040px;
         max-width: none;
@@ -304,6 +439,11 @@
         @include max(xxl) {
           width: vw(1040);
           font-size: vw(48);
+        }
+
+        @include max(sm) {
+          width: 100%;
+          font-size: vw(26, 320);
         }
       }
     }
@@ -316,6 +456,10 @@
         width: vw(686);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       img {
         right: -89px;
         top: 11px;
@@ -323,6 +467,11 @@
         @include max(xxl) {
           right: vw(-89);
           top: vw(11);
+        }
+
+        @include max(sm) {
+          right: 0;
+          top: 0;
         }
       }
     }
@@ -336,6 +485,10 @@
         width: vw(960);
       }
 
+      @include max(sm) {
+        width: 100%;
+      }
+
       .question__title {
         width: 990px;
         max-width: none;
@@ -344,6 +497,11 @@
         @include max(xxl) {
           width: vw(990);
           font-size: vw(48);
+        }
+
+        @include max(sm) {
+          width: 100%;
+          font-size: vw(26, 320);
         }
       }
     }
@@ -357,6 +515,11 @@
         margin-right: vw(90);
       }
 
+      @include max(sm) {
+        width: 100%;
+        margin-right: 0;
+      }
+
       img {
         left: -32px;
         top: 43px;
@@ -365,18 +528,33 @@
           left: vw(-32);
           top: vw(43);
         }
+
+        @include max(sm) {
+          left: 0;
+          top: 0;
+        }
       }
     }
   }
 
   &__main {
     width: 50%;
+
+    @include max(sm) {
+      width: 100%;
+    }
   }
 
   &__aside {
     width: 50%;
 
     flex-shrink: 0;
+
+    @include max(sm) {
+      width: 100%;
+      margin-bottom: vw(24, 320);
+      order: -1;
+    }
 
     img {
       position: relative;

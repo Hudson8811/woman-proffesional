@@ -7,6 +7,10 @@
     padding: vw(45) 0 vw(50);
   }
 
+  @include max(sm) {
+    padding: vw(32, 320) 0;
+  }
+
   &__container {
     display: flex;
     max-width: 1780px;
@@ -14,6 +18,11 @@
 
     @include max(xxl) {
       max-width: vw(1780);
+    }
+
+    @include max(sm) {
+      display: block;
+      max-width: none;
     }
   }
 
@@ -29,6 +38,12 @@
       width: vw(1100);
       margin-left: vw(-70);
     }
+
+    @include max(sm) {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: vw(32, 320);
+    }
   }
 
   &__main {
@@ -43,6 +58,12 @@
       margin-left: vw(90);
       padding-top: vw(105);
     }
+
+    @include max(sm) {
+      width: 100%;
+      margin-left: 0;
+      padding-top: 0;
+    }
   }
 
   &__title {
@@ -52,6 +73,11 @@
     @include max(xxl) {
       max-width: vw(590);
       margin-bottom: vw(36);
+    }
+
+    @include max(xxl) {
+      max-width: none;
+      margin-bottom: vw(36, 320);
     }
 
     span {
@@ -70,6 +96,12 @@
       max-width: vw(600);
       margin-bottom: vw(69);
       font-size: vw(24);
+    }
+
+    @include max(sm) {
+      max-width: none;
+      margin-bottom: vw(32, 320);
+      font-size: vw(18, 320);
     }
 
     p {
@@ -99,6 +131,11 @@
     @include max(xxl) {
       width: vw(55);
       height: vw(55);
+    }
+
+    @include max(sm) {
+      width: vw(55, 320);
+      height: vw(55, 320);
     }
 
     svg {

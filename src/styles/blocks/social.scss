@@ -14,11 +14,19 @@
       height: vw(50);
     }
 
+    @include max(sm) {
+      width: vw(50, 320);
+      height: vw(50, 320);
+    }
+
     & + & {
       margin-left: 21px;
 
       @include max(xxl) {
         margin-left: vw(21);
+      }
+      @include max(sm) {
+        margin-left: vw(12, 320);
       }
     }
   }
@@ -33,6 +41,9 @@
 
     @include max(xxl) {
       border-width: vw(2);
+    }
+    @include max(sm) {
+      border-width: vw(2, 320);
     }
 
     svg {
@@ -62,6 +73,9 @@
         @include max(xxl) {
           width: vw(21);
         }
+        @include max(sm) {
+          width: vw(21, 320);
+        }
       }
     }
     &--ok {
@@ -70,6 +84,9 @@
 
         @include max(xxl) {
           width: vw(15);
+        }
+        @include max(sm) {
+          width: vw(15, 320);
         }
       }
     }
@@ -80,6 +97,9 @@
         @include max(xxl) {
           width: vw(13);
         }
+        @include max(sm) {
+          width: vw(13, 320);
+        }
       }
     }
     &--b {
@@ -88,6 +108,9 @@
 
         @include max(xxl) {
           width: vw(15);
+        }
+        @include max(sm) {
+          width: vw(15, 320);
         }
       }
     }

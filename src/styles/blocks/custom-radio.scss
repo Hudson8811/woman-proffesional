@@ -10,6 +10,10 @@
       @include max(xxl) {
         margin-top: vw(40);
       }
+
+      @include max(sm) {
+        margin-top: vw(20, 320);
+      }
     }
 
     @include hover {
@@ -42,6 +46,7 @@
         left: 11px;
         width: 78px;
         height: 66px;
+        background-repeat: no-repeat;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg  viewBox='0 0 78 66' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M65.275 0 25.532 39.744l-12.89-12.89L0 39.496l12.89 12.89L25.614 65.11l12.642-12.642L78 12.725 65.275 0Z' fill='%23F90'/%3e%3c/svg%3e");
 
         @include max(xxl) {
@@ -49,6 +54,13 @@
           left: vw(11);
           width: vw(78);
           height: vw(66);
+        }
+
+        @include max(sm) {
+          top: vw(-1, 320);
+          left: vw(7, 320);
+          width: vw(36, 320);
+          height: vw(28, 320);
         }
       }
     }
@@ -68,6 +80,10 @@
 
     @include max(xxl) {
       font-size: vw(35);
+    }
+
+    @include max(sm) {
+      font-size: vw(18, 320);
     }
 
     /*@include max(sm) {
@@ -97,6 +113,13 @@
         height: vw(75);
         margin-right: vw(42);
         border-width: vw(4);
+      }
+
+      @include max(sm) {
+        width: vw(36, 320);
+        height: vw(36, 320);
+        margin-right: vw(20, 320);
+        border-width: vw(2, 320);
       }
 
       /*@include max(xl) {
