@@ -714,6 +714,7 @@ window.addEventListener('load', () => {
         TweenMax.to(introEl, 0.8, {y: -1 * window.innerHeight, ease: Power1.easeOut,
             onComplete: function () {
                 introEl.remove();
+                document.querySelector('body').classList.add('overflow');
             }
         });
         TweenMax.to(quizEl, 0.8,{y:0,  ease: Power1.easeOut});
