@@ -5,6 +5,9 @@ body {
   font-family: $mainFont;
   color: $textMainColor;
   background-color: $smoky;
+
+	width: 100%;
+	overflow: hidden;
 }
 
 .container {

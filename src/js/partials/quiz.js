@@ -421,17 +421,17 @@ window.addEventListener('load', () => {
     resultType[type].points++;
   };
 
-  const scroll = () => {
+  /*const scroll = () => {
     gsap.to(quizEl, {y: -document.documentElement.clientHeight, duration: 0.7});
     gsap.to(introEl, {y: -introEl.offsetHeight, duration: 0.7, onComplete: () => {
       introEl.remove();
       quizEl.removeAttribute('style');
       mainEl.removeAttribute('style');
       //gsap.to(quizEl, {y: 0, duration: 0})
-      window.removeEventListener('scroll', scrollToQuiz);
+      //window.removeEventListener('scroll', scrollToQuiz);
     }});
-  };
-
+  };*/
+/*
   const scrollToQuiz = () => {
     if (isDesktop) {
       scroll();
@@ -441,7 +441,7 @@ window.addEventListener('load', () => {
       }
     }
     
-  };
+  };*/
 
   const begin = () => {
     //setShareLinks();
@@ -458,13 +458,10 @@ window.addEventListener('load', () => {
     if (isDesktop) {
       gsap.fromTo('.intro__image', {xPercent: -100}, {xPercent: 0, duration: 1});
       gsap.fromTo('.intro__main', {xPercent: 100}, {xPercent: 0, duration: 1});
-
-
-      
     }
 
-    window.addEventListener('scroll', scrollToQuiz);
-    introBtnEl.onclick = isDesktop ? scrollToQuiz : scroll;
+    //window.addEventListener('scroll', scrollToQuiz);
+    //introBtnEl.onclick = isDesktop ? scrollToQuiz : scroll;
     quizEl.onclick = onQuizElClick;
   };
 
@@ -678,5 +675,105 @@ window.addEventListener('load', () => {
       quizEl.onclick = onQuizElClick;
     })();*/
   }
+
+
+
+    let lock = 0;
+    TweenMax.set(quizEl, {y:window.innerHeight});
+
+
+    window.addEventListener('resize', function(event){
+        if (lock === 0){
+            TweenMax.set(quizEl, {y:window.innerHeight});
+        }
+    });
+
+    $(introEl).on('scroll',function (){
+        if (lock === 0 && (introEl.scrollHeight <= introEl.scrollTop+window.innerHeight)){
+            lock = 1;
+            scrollToQuiz();
+        }
+    });
+
+    eventDelay(window, 'mousewheel', function (down, up) {
+        if (down && lock === 0 && (introEl.scrollHeight <= introEl.scrollTop+window.innerHeight)){
+            lock = 1;
+            scrollToQuiz();
+        }
+    }, 300);
+
+
+    introBtnEl.addEventListener( "click", function() {
+        if (lock === 0){
+            lock = 1;
+            scrollToQuiz();
+        }
+    }, false);
+
+    function scrollToQuiz(){
+        TweenMax.to(introEl, 0.8, {y: -1 * window.innerHeight, ease: Power1.easeOut,
+            onComplete: function () {
+                introEl.remove();
+            }
+        });
+        TweenMax.to(quizEl, 0.8,{y:0,  ease: Power1.easeOut});
+    }
+
+    function normalizeWheelSpeed(event) {
+        var normalized;
+        if (event.wheelDelta) {
+            normalized = (event.wheelDelta % 120 - 0) == -0 ? event.wheelDelta / 120 : event.wheelDelta / 12;
+        } else {
+            var rawAmmount = event.deltaY ? event.deltaY : event.detail;
+            normalized = -(rawAmmount % 3 ? rawAmmount * 10 : rawAmmount / 3);
+        }
+        return normalized;
+    }
+
+    function eventDelay(el, eventName, callback, delay) {
+        var currentTime = (new Date()).getTime();
+        var container = typeof el == 'object' ? $(el) : $(el);
+        delay = delay || 1000;
+        eventName = eventName || 'mousewheel';
+        var block = false;
+        if (eventName === 'mousewheel') {
+            var indicator = new WheelIndicator({
+                elem: document.querySelector('body'),
+                preventMouse: false,
+                callback: function(e){
+                    var nowTime = (new Date()).getTime();
+                    var diff = Math.abs((nowTime - currentTime) / delay);
+                    if (diff < 1) {
+                    } else {
+                        var up = e.direction == 'up';
+                        var down = e.direction == 'down';
+                        callback(down, up);
+                        currentTime = nowTime;
+                    }
+                }
+            });
+        } else {
+            container.on(eventName, function (event) {
+                var nowTime = (new Date()).getTime();
+                var diff = Math.abs((nowTime - currentTime) / delay);
+                if (diff < 1.3) return;
+                currentTime = nowTime;
+                if (eventName == 'mousewheel') {
+                    var normalized = normalizeWheelSpeed(event)
+                    var down = normalized > 0;
+                    var up = normalized < 0;
+                    callback(down, up);
+                } else if (eventName == 'keyup') {
+                    var normalized = event.keyCode
+                    var down = normalized == 40 || normalized == 39;
+                    var up = normalized == 38 || normalized == 37;
+                    callback(down, up);
+                } else {
+                    callback();
+                }
+            });
+        }
+
+    }
   
 });

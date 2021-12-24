@@ -1,15 +1,21 @@
 .intro {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
   display: flex;
   padding: 45px 0 50px;
   min-height: 100vh;
-
   opacity: 0;
+	height: 100vh;
+	overflow: auto;
 
   @include max(xxl) {
     padding: vw(45) 0 vw(50);
   }
 
   @include max(sm) {
+	  display: block;
     padding: vw(32, 320) 0;
   }
 
