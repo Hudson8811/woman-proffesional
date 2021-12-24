@@ -1,22 +1,25 @@
 .question {
   &__title {
     display: flex;
-    max-width: 985px;
+    max-width: 900px;
+
+    font-size: 65px;
 
     @include max(xxl) {
-      max-width: vw(985);
+      max-width: vw(900);
+      font-size: vw(65);
     }
 
     @include max(sm) {
       //display: block;
       max-width: none;
-      margin-bottom: vw(24, 320);
+      margin-bottom: vw(16, 320);
     }
 
     &-num {
       margin-right: 24px;
       font-family: $secondFont;
-      font-size: 288px;
+      font-size: 260px;
       line-height: 1;
       -webkit-text-fill-color: transparent;
       -webkit-text-stroke-width: 3px;
@@ -25,14 +28,14 @@
 
       @include max(xxl) {
         margin-right: vw(24);
-        font-size: vw(288);
+        font-size: vw(260);
 
         -webkit-text-stroke-width: vw(3);
       }
 
       @include max(sm) {
         margin-right: vw(12, 320);
-        font-size: vw(90, 320);
+        font-size: vw(60, 320);
 
         -webkit-text-stroke-width: vw(2, 320);
         align-self: flex-start;
@@ -43,7 +46,7 @@
       align-self: center;
 
       @include max(sm) {
-        font-size: vw(26, 320);
+        font-size: vw(18, 320);
       }
     }
   }

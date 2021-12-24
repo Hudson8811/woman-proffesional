@@ -72,18 +72,18 @@
     vertical-align: top;
     //padding-left: 117px;
 
-    font-size: 35px;
+    font-size: 31px; //35px;;
     line-height: 1.2;
     color: $dark;
 
     cursor: pointer;
 
     @include max(xxl) {
-      font-size: vw(35);
+      font-size: vw(31);
     }
 
     @include max(sm) {
-      font-size: vw(18, 320);
+      font-size: vw(13, 320);
     }
 
     /*@include max(sm) {

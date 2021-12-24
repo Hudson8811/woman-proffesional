@@ -220,21 +220,21 @@
     }
 
     @include max(sm) {
-      margin-bottom: vw(24, 320);
-      font-size: vw(32, 320);
+      margin-bottom: vw(20, 320);
+      font-size: vw(22, 320);
     }
   }
 
   &__text {
-    font-size: 26px;
+    font-size: 24px; //26px;
     line-height: 1.23;
 
     @include max(xxl) {
-      font-size: vw(26);
+      font-size: vw(24);
     }
 
     @include max(sm) {
-      font-size: vw(18, 320);
+      font-size: vw(12, 320);
     }
 
     p {
@@ -351,10 +351,15 @@
       @include max(sm) {
         margin-bottom: vw(16, 320);
         font-size: vw(18, 320);
+        text-align: center;
       }
     }
 
     &-list {
+      @include max(sm) {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 }

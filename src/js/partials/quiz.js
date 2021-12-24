@@ -245,10 +245,20 @@ window.addEventListener('load', () => {
   let currentIndex = 0;
   let lastAnswerValue = null;
   let resultDataItems = [];
+  const isDesktop = document.documentElement.clientWidth >= 768;
+  
+  let shareTitle = 'Мой результат теста - Профессия: выбираем вместе с детьми';
+  const shareData = {
+    b: 'https://vk.com/share.php?url=<URL>',
+    ok: 'https://connect.ok.ru/offer?url=<URL>&title=' + shareTitle,
+    fb: 'https://www.facebook.com/sharer/sharer.php?u=<URL>',
+    tw: 'https://twitter.com/intent/tweet?text=' + shareTitle + '&url=<URL>'
+  };
   
   const inputValues = ['a', 'b', 'c', 'd'];
   let timeoutId = null;
   let resultEl = null;
+  let resultUrl = '';
 
   const resultType = {
     pm: {type: 'pm', points: 0},
@@ -335,7 +345,19 @@ window.addEventListener('load', () => {
     console.log('-------------------------------')
   }
   
-  /////////////////
+  ///////////////// http://localhost:9000/?isResult=true&type=km
+
+  /*const getResultUrl = (type) => {
+    return `${window.location.href.split('#')[0]}?isResult=true&type=${type}`;
+  };*/
+
+  const setShareLinks = () => {
+    const socialItems = document.querySelectorAll('.social__link');
+    socialItems.forEach(it => {
+      const modClass = it.className.split('social__link social__link--')[1];
+      it.href = shareData[modClass].replace('<URL>', window.location.href);
+    });
+  };
 
   const getQuizElClass = (index) => {
     return `quiz quiz--q${index + 1}` + ((index + 1) % 2 === 0 ? ' quiz--reverse' : '');
@@ -354,8 +376,9 @@ window.addEventListener('load', () => {
     let items = '';
 
     dataItem.answers.forEach((el, index) => {
+      const str = '';//' - ' + el.type;
       items += `<label class="custom-radio__item">
-        <input class="visually-hidden" type="radio" name="answer" value="${inputValues[index]}"><span class="custom-radio__text"><span>${el.text} - ${el.type}</span></span>
+        <input class="visually-hidden" type="radio" name="answer" value="${inputValues[index]}"><span class="custom-radio__text"><span>${el.text}${str}</span></span>
       </label>`;
     });
 
@@ -398,6 +421,40 @@ window.addEventListener('load', () => {
     resultType[type].points++;
   };
 
+  const scrollToQuiz = () => {
+    gsap.to(quizEl, {y: -document.documentElement.clientHeight, duration: 0.7});
+    gsap.to(introEl, {y: -introEl.offsetHeight, duration: 0.7, onComplete: () => {
+      introEl.remove();
+      quizEl.removeAttribute('style');
+      mainEl.removeAttribute('style');
+      //gsap.to(quizEl, {y: 0, duration: 0})
+      window.removeEventListener('scroll', scrollToQuiz);
+    }});
+  };
+
+  const begin = () => {
+    setShareLinks();
+
+    renderQuestion(currentIndex);
+    currentIndex++;
+    quizEl.classList.remove('quiz--hidden')
+
+    gsap.to(introEl, {opacity: 1, duration: 1});
+
+    if (isDesktop) {
+      gsap.fromTo('.intro__image', {xPercent: -100}, {xPercent: 0, duration: 1});
+      gsap.fromTo('.intro__main', {xPercent: 100}, {xPercent: 0, duration: 1});
+
+      mainEl.style.overflow = 'hidden';
+      mainEl.style.height = '100vh';
+
+      window.addEventListener('scroll', scrollToQuiz);
+    }
+
+    introBtnEl.onclick = isDesktop ? scrollToQuiz : start;
+    quizEl.onclick = onQuizElClick;
+  };
+
   const start = () => {
     gsap.to(introEl, {opacity: 0, duration: 0.5, onComplete: () => {
       introEl.remove();
@@ -421,7 +478,9 @@ window.addEventListener('load', () => {
   };
 
   const restart = () => {
+    window.location.hash = '';
     currentIndex = 0;
+
     gsap.to(resultEl, {opacity: 0, duration: 0.5, onComplete: () => {
       resultEl.remove();
       resultEl = null;
@@ -490,6 +549,29 @@ window.addEventListener('load', () => {
     //console.log(resultDataItems);
   };
 
+  const onResultElClick = (e) => {
+    const moreBtn = e.target.closest('.result__more');
+    const restartBtn = e.target.closest('.result__restart');
+
+    if (moreBtn) {
+      renderResult(resultEl);
+    }
+
+    if (restartBtn) {
+      restart();
+    }
+  };
+
+  const animateResult = (type) => {
+    const selectorFromLeft = type === 'pr' || type === 'pm' ? '.result__main' : '.result__aside';
+    const selectorFromRight = type === 'km' || type === 'ik' ? '.result__main' : '.result__aside';
+
+    if (isDesktop) {
+      gsap.fromTo(selectorFromLeft, {xPercent: -100}, {xPercent: 0, duration: .7});
+      gsap.fromTo(selectorFromRight, {xPercent: 100}, {xPercent: 0, duration: .7});
+    }
+  };
+
   const renderResult = (element) => {
     //console.log(resultType)
     gsap.fromTo(element, {opacity: 1}, {opacity: 0, duration: 0.5, onComplete: () => {
@@ -508,29 +590,23 @@ window.addEventListener('load', () => {
         } else {
           mainEl.appendChild(newResultEl);
         }
+
         resultEl = newResultEl;
-        //quizEl = null;
+
+        //формируем соц ссылки getResultUrl();
+        window.location.hash = resultDataItem.type;
+        setShareLinks();
 
         gsap.fromTo(resultEl, {opacity: 0}, {opacity: 1, duration: 0.5, onComplete: () => {
           resultEl.classList.remove('result--no-events');
         }});
 
-        resultEl.onclick = (e) => {
-          const moreBtn = e.target.closest('.result__more');
-          const restartBtn = e.target.closest('.result__restart');
+        animateResult(resultDataItem.type);
 
-          if (moreBtn) {
-            renderResult(resultEl);
-          }
-
-          if (restartBtn) {
-            restart();
-          }
-        };
+        resultEl.onclick = onResultElClick;
       }
     }});
   };
-
 
   const onQuizElClick = (e) => {
     const target = e.target.closest('input[type="radio"]');
@@ -546,7 +622,7 @@ window.addEventListener('load', () => {
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           next(currentIndex);
-        }, 1000);
+        }, 500);
       } else {
 
         clearTimeout(timeoutId);
@@ -562,16 +638,31 @@ window.addEventListener('load', () => {
           hideEl.classList.add(quizEl ? 'quiz--no-events' : 'result--no-events');
 
           renderResult(hideEl);
-          
-        }, 1000);
-        
-      }
 
-      
+        }, 500);
+      }
     }
   };
 
   ////////////////////////////
-  introBtnEl.onclick = start;
-  quizEl.onclick = onQuizElClick;
+  const hash = window.location.hash.split('#')[1];
+  if (hash && result.hasOwnProperty(hash)) {
+    resultEl = createElement(createResultTemplate(result[hash]));
+    resultEl.onclick = onResultElClick;
+
+    introEl.remove();
+    mainEl.appendChild(resultEl);
+
+    gsap.fromTo(resultEl, {opacity: 0}, {opacity: 1, duration: 0.5});
+    animateResult(hash);
+
+    setShareLinks();
+  } else {
+    isDesktop ? begin() : (function() {
+      gsap.to(introEl, {opacity: 1, duration: 1});
+      introBtnEl.onclick = start;
+      quizEl.onclick = onQuizElClick;
+    })();
+  }
+  
 });
