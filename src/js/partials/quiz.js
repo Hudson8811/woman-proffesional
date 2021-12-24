@@ -421,7 +421,7 @@ window.addEventListener('load', () => {
     resultType[type].points++;
   };
 
-  const scrollToQuiz = () => {
+  const scroll = () => {
     gsap.to(quizEl, {y: -document.documentElement.clientHeight, duration: 0.7});
     gsap.to(introEl, {y: -introEl.offsetHeight, duration: 0.7, onComplete: () => {
       introEl.remove();
@@ -432,12 +432,26 @@ window.addEventListener('load', () => {
     }});
   };
 
+  const scrollToQuiz = () => {
+    if (isDesktop) {
+      scroll();
+    } else {
+      if (window.pageYOffset > introEl.offsetHeight - document.documentElement.clientHeight) {
+        scroll();
+      }
+    }
+    
+  };
+
   const begin = () => {
-    setShareLinks();
+    //setShareLinks();
 
     renderQuestion(currentIndex);
     currentIndex++;
     quizEl.classList.remove('quiz--hidden')
+  
+    //mainEl.style.overflow = 'hidden';
+    //mainEl.style.height = '100vh';
 
     gsap.to(introEl, {opacity: 1, duration: 1});
 
@@ -445,17 +459,16 @@ window.addEventListener('load', () => {
       gsap.fromTo('.intro__image', {xPercent: -100}, {xPercent: 0, duration: 1});
       gsap.fromTo('.intro__main', {xPercent: 100}, {xPercent: 0, duration: 1});
 
-      mainEl.style.overflow = 'hidden';
-      mainEl.style.height = '100vh';
 
-      window.addEventListener('scroll', scrollToQuiz);
+      
     }
 
-    introBtnEl.onclick = isDesktop ? scrollToQuiz : start;
+    window.addEventListener('scroll', scrollToQuiz);
+    introBtnEl.onclick = isDesktop ? scrollToQuiz : scroll;
     quizEl.onclick = onQuizElClick;
   };
 
-  const start = () => {
+  /*const start = () => {
     gsap.to(introEl, {opacity: 0, duration: 0.5, onComplete: () => {
       introEl.remove();
       quizEl.classList.remove('quiz--hidden');
@@ -464,7 +477,7 @@ window.addEventListener('load', () => {
       show();
       currentIndex++;
     } });
-  };
+  };*/
 
   const next = (index) => {
     hide( () => {
@@ -656,13 +669,14 @@ window.addEventListener('load', () => {
     gsap.fromTo(resultEl, {opacity: 0}, {opacity: 1, duration: 0.5});
     animateResult(hash);
 
-    setShareLinks();
+    //setShareLinks();
   } else {
-    isDesktop ? begin() : (function() {
+    begin();
+    /*isDesktop ? begin() : (function() {
       gsap.to(introEl, {opacity: 1, duration: 1});
       introBtnEl.onclick = start;
       quizEl.onclick = onQuizElClick;
-    })();
+    })();*/
   }
   
 });
