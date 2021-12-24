@@ -2,3 +2,4 @@
 
 
 //= ./partials/main.js
+//= ./partials/quiz.js
